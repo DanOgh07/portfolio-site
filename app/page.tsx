@@ -9,9 +9,6 @@ export default function Home() {
         <strong>Data Analyst & Scientist</strong> with a Computer Science background,
         skilled in <strong>Power BI, Tableau, Python, and Excel</strong>.
         I focus on transforming data into clear insights that support business decisions.
-      </p>
-
-      <p className="text-gray-600">
         I enjoy working with real-world datasets, building dashboards,
         and answering business questions through data.
       </p>
