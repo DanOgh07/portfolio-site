@@ -1,17 +1,51 @@
-export default function Home() {
-  return (
-    <section>
-      <h1 className="text-3xl font-bold mb-4">
-        Hello, I’m Daniel Oghie
-      </h1>
+'use client'
 
-      <p className="text-lg mb-6">
-        <strong>Data Analyst & Scientist</strong> with a Computer Science background,
-        skilled in <strong>Power BI, Tableau, Python, and Excel</strong>.
-        I focus on transforming data into clear insights that support business decisions.
-        I enjoy working with real-world datasets, building dashboards,
-        and answering business questions through data.
-      </p>
-    </section>
-  );
+import { useState, useEffect } from 'react'
+import Navbar from '@/components/Navbar'
+import Hero from '@/components/Hero'
+import Metrics from '@/components/Metrics'
+import About from '@/components/About'
+import Projects from '@/components/Projects'
+import Skills from '@/components/Skills'
+import Experience from '@/components/Experience'
+import Contact from '@/components/Contact'
+
+export default function Home() {
+  const [darkMode, setDarkMode] = useState(true)
+
+  // Persist preference & apply class to <html>
+  useEffect(() => {
+    const saved = localStorage.getItem('theme')
+    if (saved === 'light') {
+      setDarkMode(false)
+      document.documentElement.classList.add('light')
+    }
+  }, [])
+
+  const toggleDark = () => {
+    const next = !darkMode
+    setDarkMode(next)
+    if (next) {
+      document.documentElement.classList.remove('light')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.add('light')
+      localStorage.setItem('theme', 'light')
+    }
+  }
+
+  return (
+    <main style={{ background: 'var(--color-bg)', minHeight: '100vh' }}>
+      <Navbar darkMode={darkMode} toggleDark={toggleDark} />
+
+      {/* ── HERO + METRICS ── */}
+      <Hero />
+      <Metrics />
+      <About />
+      <Projects />
+      <Skills />
+      <Experience />
+      <Contact />
+    </main>
+  )
 }

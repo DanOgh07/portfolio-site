@@ -1,20 +1,44 @@
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import type { Metadata } from 'next'
+import { Sora, DM_Sans } from 'next/font/google'
+import './globals.css'
 
-export const metadata = {
-  title: "Daniel Oghie | Data Analyst & Scientist",
-  description: "Data Analyst & Scientist skilled in Power BI, Tableau, Python, and Excel",
-};
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-sora',
+  weight: ['400', '600'],
+  display: 'swap',
+})
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm',
+  weight: ['300', '400', '500'],
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  title: 'Daniel Oghie | Data Analyst & Scientist',
+  description:
+    'Analytics Innovation Manager at DecisionSpaak. I build dashboards, ML pipelines, and predictive models that turn raw data into decisions.',
+  openGraph: {
+    title: 'Daniel Oghie | Data Analyst & Scientist',
+    description:
+      'Analytics Innovation Manager at DecisionSpaak. I build dashboards, ML pipelines, and predictive models that turn raw data into decisions.',
+    url: 'https://daniel-oghie.vercel.app',
+    siteName: 'Daniel Oghie',
+    locale: 'en_NG',
+    type: 'website',
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body>
-        <Navbar />
-        <main className="max-w-5xl mx-auto px-4 py-8">
-          {children}
-        </main>
-      </body>
+    <html lang="en" className={`${sora.variable} ${dmSans.variable}`}>
+      <body>{children}</body>
     </html>
-  );
+  )
 }

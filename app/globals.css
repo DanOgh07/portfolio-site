@@ -1,26 +1,90 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ── DARK MODE (default) ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-sora: var(--font-sora);
+  --font-dm: var(--font-dm);
+
+  --color-bg: #0A0F1E;
+  --color-text-primary: #ffffff;
+  --color-text-sub: #6B738A;
+  --color-text-muted: #4A5268;
+
+  --color-accent: #00C9A7;
+  --color-accent-dim: rgba(0, 201, 167, 0.07);
+  --color-accent-border: rgba(0, 201, 167, 0.25);
+
+  --color-nav-bg: rgba(10, 15, 30, 0.70);
+  --color-nav-bg-scrolled: rgba(10, 15, 30, 0.92);
+  --color-nav-border: rgba(0, 201, 167, 0.15);
+  --color-nav-link: #9BA3B8;
+  --color-drawer-bg: rgba(10, 15, 30, 0.97);
+
+  --color-ghost-border: rgba(255, 255, 255, 0.15);
+
+  --color-bar-bg: rgba(255, 255, 255, 0.03);
+  --color-bar-border: rgba(255, 255, 255, 0.07);
+
+  --color-card-bg: rgba(255, 255, 255, 0.03);
+  --color-card-border: rgba(255, 255, 255, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── LIGHT MODE ── */
+html.light {
+  --color-bg: #F8F5F0;
+  --color-text-primary: #0F172A;
+  --color-text-sub: #64748B;
+  --color-text-muted: #94A3B8;
+
+  --color-accent: #0F6E56;
+  --color-accent-dim: rgba(15, 110, 86, 0.06);
+  --color-accent-border: rgba(15, 110, 86, 0.22);
+
+  --color-nav-bg: rgba(248, 245, 240, 0.75);
+  --color-nav-bg-scrolled: rgba(248, 245, 240, 0.94);
+  --color-nav-border: rgba(15, 110, 86, 0.12);
+  --color-nav-link: #64748B;
+  --color-drawer-bg: rgba(248, 245, 240, 0.98);
+
+  --color-ghost-border: rgba(30, 41, 59, 0.20);
+
+  --color-bar-bg: rgba(30, 41, 59, 0.03);
+  --color-bar-border: rgba(30, 41, 59, 0.10);
+
+  --color-card-bg: rgba(30, 41, 59, 0.03);
+  --color-card-border: rgba(30, 41, 59, 0.10);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── BASE ── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm), sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  transition: background 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Remove default list styles globally */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth transitions on theme switch */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* Exclude transforms and other props from blanket transition */
+a, button {
+  transition-property: background-color, border-color, color, transform, opacity;
 }
