@@ -110,7 +110,6 @@ export default function About() {
           style={{
             border: '0.5px solid var(--color-card-border)',
             background: 'var(--color-card-bg)',
-            divideColor: 'var(--color-card-border)',
           }}
         >
           {FACTS.map(({ label, value }) => (
